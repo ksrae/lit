@@ -1,32 +1,30 @@
-import {LitElement, css, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { html, css, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
-  // Define scoped styles right with your component, in plain CSS
   static styles = css`
     :host {
       color: blue;
     }
   `;
 
-  // Declare reactive properties
   @property()
-  name?: string = 'World';
+  name = 'World'; // 기본값 설정
 
-  _onClick() {
-    const event = new CustomEvent('button-clicked', {
+  render() {
+    return html`
+      <p>Hello, ${this.name}!</p>
+      <button @click=${this._onClicked}>Click</button>
+    `;
+  }
+
+  private _onClicked() {
+    const event = new CustomEvent('onclicked', {
       detail: this.name,
       bubbles: true,
       composed: true
     });
     this.dispatchEvent(event);
-  }
-  // Render the UI as a function of component state
-  render() {
-    return html`
-      <p>Hellooooo, ${this.name}!</p>
-      <button @click=${this._onClick}>Click</button>
-    `;
   }
 }
