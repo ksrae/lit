@@ -1,0 +1,22 @@
+{
+  "name": "lit-guide",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "import:ts": "node dynamic-build.js",
+    "build": "npm run import:ts && esbuild ./src/main.ts --bundle --minify --target=es2020 --outdir=./dist --format=esm",
+    "start": "npm run build && lite-server --baseDir=."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.20.0",
+    "lite-server": "^2.6.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "lit": "^3.1.2"
+  }
+}
