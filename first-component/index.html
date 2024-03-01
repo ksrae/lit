@@ -6,7 +6,11 @@
     <title>My LitElement Project</title>
 </head>
 <body>
-    <my-element name="yaaaaaaa" @button-clicked="${(e) => console.log(e.detail)}"></my-element>
+    <my-element .name="yaaaaaaa"></myElement>
     <script type="module" src="dist/main.js"></script>
+    <script>
+        const myElement = document.querySelector('my-element');
+        myElement.addEventListener('onclicked', (e) => console.log(e));
+    </script>
 </body>
 </html>
