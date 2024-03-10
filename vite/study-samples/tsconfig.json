@@ -4,6 +4,7 @@
     "module": "es2020",
     "moduleResolution": "node",
     "strict": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["es2022", "dom"],
     "experimentalDecorators": true,
@@ -12,7 +13,6 @@
     "rootDir": "./src",
     "allowJs": true,
     "isolatedModules": true,
-    "useDefineForClassFields": true,
     "types": ["vite/client"]
   },
   "include": ["src"],

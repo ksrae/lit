@@ -1,22 +1,3 @@
-// // vite.config.js basic
-// import { defineConfig } from 'vite'
-// import path from 'path'
-
-// export default defineConfig({
-//   build: {
-//     outDir: 'dist',
-//     lib: {
-//       entry: [
-//         path.resolve(__dirname, 'src/web-component/hello-world.ts'),
-//         path.resolve(__dirname, 'src/web-component/simple-greeting.ts'),
-//       ],
-//       name: 'HelloWorldComponent',
-//       fileName: (format) => `hello-world.${format}.js`
-//     }
-//   }
-// })
-
-// vite.config.js multiple files to one
 import { defineConfig } from 'vite'
 import fs from 'fs'
 import path from 'path'
@@ -24,47 +5,28 @@ import path from 'path'
 const srcDir = path.resolve(__dirname, 'src')
 const componentDir = 'web-component'
 
-fs.readdir(`${srcDir}/${componentDir}`, {withFileTypes: true}, (err, directory) => {
-  if (err) {
-    console.error(err)
-    return
-  }
+const dirs = fs.readdirSync(`${srcDir}/${componentDir}`, {withFileTypes: true})
+  .filter(dir => dir.isDirectory())
+  .map(dir => dir.name)
 
-  for(const dir of directory) {
-    if(dir.isDirectory()) {
-      fs.readdir(`${srcDir}/${componentDir}/${dir.name}`, (err, files) => {
-        if (err) {
-          console.error(err)
-          return
-        }
-        writeFile(dir.name, files);
-        console.log(`Files written to ${srcDir}/main.ts`)
-        console.log(`Imported files from ${srcDir}/${componentDir}/${dir.name}`)
-        console.log('Done')
-        return
-        // 추가 작업을 수행할 수 있습니다.
-        // 예를 들어, 파일을 정렬하거나 다른 작업을 수행할 수 있습니다.
-        // 작업 완료 후 콘솔에 출력할 수도 있습니다
-      })
-    }
-  }
+  let allImports = ''; // 모든 import 문을 저장할 변수
+
+dirs.forEach(dir => {
+  const files = fs.readdirSync(`${srcDir}/${componentDir}/${dir}`)
+  const tsFiles = files.filter(file => file.endsWith('.ts'))
+  const imports = tsFiles.map(file => `import './${componentDir}/${dir}/${file}'`).join('\n')
+  allImports += imports + '\n'; // 각 디렉토리의 import 문을 allImports에 추가
 })
 
-function writeFile(dirname, files) {
-  const tsFiles = files.filter((file) => file.endsWith('.ts'))
-  const imports = tsFiles.map((file) => `import './${componentDir}/${dirname}/${file}'`).join('\n')
+// 모든 import 문이 추가된 후에 파일에 한 번에 쓴다.
+fs.writeFileSync(path.resolve(srcDir, 'main.ts'), allImports)
+console.log(`Files written to ${srcDir}/main.ts`)
 
-  fs.writeFile(path.resolve(srcDir, 'main.ts'), imports, (err) => {
-    if (err) {
-      console.error(err)
-    }
-  })
-}
 
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/main.ts'), // 빌드의 엔트리 포인트를 main.ts로 설정
+      entry: path.resolve(__dirname, 'src/main.ts'),
       name: 'MyWebComponents',
       fileName: (format) => `my-web-components.${format}.js`,
     },
