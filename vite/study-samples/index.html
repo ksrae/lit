@@ -8,6 +8,11 @@
 <body>
     <!-- <my-button></my-button> -->
     <my-button value="yaaaaaaa"></my-button>
+    <script>
+        const myButton = document.querySelector('my-button');
+        myButton.addEventListener('onclicked', (e) => console.log(e));
+    </script>
+
     <parent-component></parent-component>
     <child-component></child-component>
     <design-system class="primary"></design-system>
@@ -40,10 +45,32 @@
         <div slot="header">ㅎㄷ</div>
     </same-name-slot>
     <life-cycle-first></life-cycle-first>
-    <script type="module" src="dist/my-web-components.es.js"></script>
+    <event-passive></event-passive>
+    <create-render-root></create-render-root>
+    <event-delegation></event-delegation>
+    <standard-event></standard-event>
     <script>
-        const myElement = document.querySelector('my-button');
-        myElement.addEventListener('onclicked', (e) => console.log(e));
+        const standardEvent = document.querySelector('standard-event');
+        // 'my-custom-event' 이벤트에 대한 리스너 추가
+        standardEvent.addEventListener('my-standard-event', (event) => {
+            console.log('스텐다드 이벤트가 발생했습니다!', event);
+        });
     </script>
+    <custom-event></custom-event>
+    <script>
+        const customEventElement = document.querySelector('custom-event');
+        // 'my-custom-event' 이벤트에 대한 리스너 추가
+        customEventElement.addEventListener('my-custom-event', (event) => {
+            console.log('커스텀 이벤트가 발생했습니다!!!', event);
+            console.log('이벤트 추적', event.composedPath())
+        });
+    </script>
+    <br/>
+    <br/>
+    <event-retargeting onClick="(e) => console.log(e.target)"></event-retargeting>
+    <my-listener>
+        <event-dispatcher-communication></event-dispatcher-communication>
+    </my-listener>
+    <script type="module" src="dist/my-web-components.es.js"></script>
 </body>
 </html>
