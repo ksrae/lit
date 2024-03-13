@@ -3,18 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "import:ts": "node dynamic-build.js",
     "build": "npm run import:ts && esbuild ./src/main.ts --bundle --minify --target=es2020 --outdir=./dist --format=esm",
-    "start": "lite-server --baseDir=."
+    "start": "lite-server --baseDir=.",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cypress": "^13.7.0",
     "lite-server": "^2.6.1"
-  },
-  "dependencies": {
-    
   }
 }

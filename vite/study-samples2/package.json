@@ -4,21 +4,21 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "vite build && vite",
+    "start": "npm run build && vite",
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:es && npm run build:umd",
+    "build:es": "vite build --config vite.config.es.ts",
+    "build:umd": "vite build --config vite.config.umd.ts",
     "serve": "vite preview"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "typescript": "^5.3.3",
     "vite": "^5.1.4"
   },
   "dependencies": {
-    "@lit/reactive-element": "^2.0.4",
-    "lit": "^3.1.2",
-    "lit-element": "^4.0.4",
-    "lit-html": "^3.1.2"
+    "lit": "^3.1.2"
   }
 }

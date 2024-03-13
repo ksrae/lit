@@ -1,0 +1,103 @@
+import { defineConfig } from 'vite';
+import fs from 'fs';
+import path from 'path';
+
+const srcDir = path.resolve(__dirname, 'src');
+const componentDir = path.join(srcDir, 'web-component');
+const mainTsPath = path.join(srcDir, 'main.ts');
+
+// 모든 .ts 파일을 찾아서 엔트리 포인트로 설정
+const input = {};
+let imports = '';
+
+// 디렉토리 탐색을 통해 각 .ts 파일을 input 객체에 추가
+fs.readdirSync(componentDir, { withFileTypes: true }).forEach(dir => {
+  if (dir.isDirectory()) {
+    const files = fs.readdirSync(path.join(componentDir, dir.name));
+    files.forEach(file => {
+      if (file.endsWith('.ts')) {
+        // es
+        const key = `${dir.name}/${file.replace('.ts', '')}`; // 키를 설정 (예: 'button/index')
+        input[key] = path.resolve(componentDir, dir.name, file); // 엔트리 포인트 경로 설정
+
+        // umd
+        // Import 구문 생성
+        const importPath = `./web-component/${dir.name}/${file}`;
+        imports += `import '${importPath}';\n`;
+      }
+    });
+  }
+});
+
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      input,
+      output: [
+        {
+          // ES 모듈 형식으로 출력
+          format: 'es',
+          dir: path.resolve(srcDir, '../dist'),
+          entryFileNames: `[name].es.js`,
+          chunkFileNames: `[name].es.js`,
+          assetFileNames: `[name].es.[ext]`
+        },
+        {
+          // UMD 형식으로 출력
+          format: 'umd',
+          dir: path.resolve(srcDir, '../dist'),
+          entryFileNames: `[name].umd.js`,
+          name: "YourUMDModuleName",
+          inlineDynamicImports: false,
+
+        }
+      ]
+    }
+  }
+});
+
+// import { defineConfig } from 'vite';
+// import path from 'path';
+// import fs from 'fs';
+
+// // 웹 컴포넌트 파일이 위치한 디렉토리 경로
+// const webComponentDir = path.resolve(__dirname, 'src', 'web-component');
+
+// // 해당 디렉토리 및 하위 디렉토리 내의 모든 .ts 파일을 찾는 함수
+// function findWebComponents(dir) {
+//   let entries = {};
+//   const items = fs.readdirSync(dir, { withFileTypes: true });
+
+//   items.forEach((item) => {
+//     const fullPath = path.join(dir, item.name);
+//     if (item.isDirectory()) {
+//       // 디렉토리인 경우, 재귀적으로 탐색
+//       Object.assign(entries, findWebComponents(fullPath));
+//     } else if (item.isFile() && item.name.endsWith('.ts')) {
+//       // .ts 파일인 경우, 입력 목록에 추가
+//       const name = path.relative(webComponentDir, fullPath).replace(/\\/g, '/').replace(/\.ts$/, '');
+//       entries[name] = fullPath;
+//     }
+//   });
+
+//   return entries;
+// }
+
+// const input = findWebComponents(webComponentDir);
+
+// export default defineConfig({
+//   build: {
+//     rollupOptions: {
+//       input,
+//       output: {
+//         // 각 컴포넌트별로 별도의 파일로 출력
+//         format: 'es',
+//         dir: path.resolve(__dirname, 'dist'),
+//         entryFileNames: '[name].js',
+//         chunkFileNames: '[name]-[hash].js',
+//         assetFileNames: '[name]-[hash].[ext]'
+//       }
+//     }
+//   }
+// });
+
