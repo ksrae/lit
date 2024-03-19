@@ -12,12 +12,11 @@ class ThemeProvider extends LitElement {
   changeTheme() {
     console.log('changeTheme', this.theme);
     this.theme = this.theme === 'dark' ? 'light' : 'dark'; // theme 상태를 올바르게 변경
-    //this.requestUpdate(); // 상태 변경 후 업데이트 요청  
   }
 
   render() {
     return html`
-      <button @click=${this.changeTheme}>테마 변경</button>
+      <button @click=${this.changeTheme}>테마 변경하자</button>
       <theme-consumer></theme-consumer>
     `;
   }
