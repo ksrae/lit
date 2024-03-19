@@ -1,4 +1,5 @@
 {
-	"hello": "Hello",
-	"welcome": "Welcome to our application!"
+	"hello": "Hello {{extra}}",
+	"welcome": "Welcome to our application!",
+	"world": "world"
 }

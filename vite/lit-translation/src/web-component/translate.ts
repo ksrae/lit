@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { translate, registerTranslateConfig, use } from 'lit-translate';
+import { translate, registerTranslateConfig, use, get } from 'lit-translate';
 
 // 번역 파일 로딩 함수
 async function loadLocale(locale: string) {
@@ -22,13 +22,15 @@ class TranslateElement extends LitElement {
 	async connectedCallback() {
 		super.connectedCallback();
 		await use('ko'); // 초기 언어 설정
+
+    console.log('hello:::',get('hello', {extra: get('world')}));
 	}
 
 
   render() {
     return html`
       <div>
-        <p>${translate('hello')}</p>
+        <p>${translate('hello',{ extra: () => get('world') })}</p>
         <p>${translate('welcome')}</p>
         <button @click="${() => this.changeLocale('en')}">English</button>
         <button @click="${() => this.changeLocale('ko')}">한국어</button>
