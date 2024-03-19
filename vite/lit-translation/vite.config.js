@@ -55,7 +55,12 @@ export default defineConfig({
       fileName: (format) => `my-web-components.${format}.js`,
     },
     rollupOptions: {
-      
+      // output: {
+      //   // 파일명에 해시 값을 포함하지 않도록 설정
+      //   entryFileNames: `[name].js`,
+      //   chunkFileNames: `[name].js`,
+      //   assetFileNames: `[name].[ext]`
+      // },
       // 필요에 따라 설정을 추가하거나 수정합니다.
     },
   },
