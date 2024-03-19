@@ -7,16 +7,19 @@
     "start": "vite build && vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "localize:extract": "lit-localize extract",
+    "localize:build": "lit-localize build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@lit/localize-tools": "^0.7.2",
     "typescript": "^5.3.3",
     "vite": "^5.1.4"
   },
   "dependencies": {
-    "@lit/context": "^1.1.0",
+    "@lit/localize": "^0.12.1",
     "lit": "^3.1.2"
   }
 }

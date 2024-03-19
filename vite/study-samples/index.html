@@ -7,29 +7,34 @@
 </head>
 <body>
     <!-- <my-button></my-button> -->
+    <hr><h3>Button</h3>
     <my-button value="yaaaaaaa"></my-button>
     <script>
         const myButton = document.querySelector('my-button');
         myButton.addEventListener('onclicked', (e) => console.log(e));
     </script>
-
+    <hr><h3>Parent Child Component</h3>
     <parent-component></parent-component>
     <child-component></child-component>
+    <hr><h3>Design System</h3>
     <design-system class="primary"></design-system>
     <design-system class="default"></design-system>
-    <br/>
+    <hr><h3>JSON in css</h3>
     <json-in-css></json-in-css>
-    <br/>
+    <hr><h3>Slot Init</h3>
     <slot-init>
         <p>A Slot</p>
     </slot-init>
+    <hr><h3>Named slot element</h3>
     <named-slot-element>
         <div slot="header">이곳은 헤더 영역입니다.</div>
         <div slot="footer">이곳은 푸터 영역입니다.</div>
     </named-slot-element>
+    <hr><h3>Slot change</h3>
     <slot-change>
         <p>hello world</p>
     </slot-change>
+    <hr><h3>Slot content</h3>
     <slot-content>
         첫줄은 TEXT_NODE 입니다.
         <span>span태그는 block이 아닙니다.</span>
@@ -37,6 +42,7 @@
         <p><span>p태그부터 하위 태그인 span까지 다 잡힙니다.</span></p>
         DOM과 DOM은 한줄 내리면 캐리지 리턴이 포함된 TEXT_NODE가 잡힙니다. TEXT_NODE와 DOM은 한줄 내려도 캐리지 리턴이 TEXT_NODE로 잡히지 않습니다.
     </slot-content>
+    <hr><h3>Same name slot</h3>
     <same-name-slot>
         <div slot="footer">ㅍㅌ</div>
         <div slot="body">같은 slot name을 가진 DOM1</div>
@@ -44,10 +50,15 @@
         <div slot="body">같은 slot name을 가진 DOM3</div>
         <div slot="header">ㅎㄷ</div>
     </same-name-slot>
+    <hr><h3>life cycle</h3>
     <life-cycle-first></life-cycle-first>
+    <hr><h3>event passive</h3>
     <event-passive></event-passive>
+    <hr><h3>create remder root</h3>
     <create-render-root></create-render-root>
+    <hr><h3>event delegation</h3>
     <event-delegation></event-delegation>
+    <hr><h3>standard event</h3>
     <standard-event></standard-event>
     <script>
         const standardEvent = document.querySelector('standard-event');
@@ -56,6 +67,7 @@
             console.log('스텐다드 이벤트가 발생했습니다!', event);
         });
     </script>
+    <hr><h3>custom event</h3>
     <custom-event></custom-event>
     <script>
         const customEventElement = document.querySelector('custom-event');
@@ -65,17 +77,36 @@
             console.log('이벤트 추적', event.composedPath())
         });
     </script>
-    <br/>
-    <br/>
+    <hr><h3>event retargeting</h3>
     <event-retargeting onClick="(e) => console.log(e.target)"></event-retargeting>
+    <hr><h3>my listener</h3>
     <my-listener>
         <event-dispatcher-communication></event-dispatcher-communication>
     </my-listener>
+    <hr><h3>REF</h3>
     <with-ref></with-ref>
+    <hr><h3>WITHOUT REF</h3>
     <without-ref></without-ref>
+    <hr><h3>html expression</h3>
     <html-expression></html-expression>
+    <hr><h3>template cache</h3>
     <template-cache></template-cache>
+    <hr><h3>repeat directive</h3>
     <repeat-directive></repeat-directive>
+    <hr><h3>live sample</h3>
+    <live-sample></live-sample>
+    <hr><h3>Mediator Element</h3>
+    <mediator-element></mediator-element>
+    <hr><h3>Reactive Controller</h3>
+    <reactive-controller></reactive-controller>
+    <hr><h3>Context - Theme</h3>
+    <theme-provider></theme-provider>    
+    <hr><h3>Async Replace</h3>
+    <async-replace></async-replace>
+    <hr><h3>Async Directive</h3>
+    <async-directive></async-directive>
+    <hr><h3>Async Append</h3>
+    <async-append></async-append>
     <script type="module" src="dist/my-web-components.es.js"></script>
 </body>
 </html>
