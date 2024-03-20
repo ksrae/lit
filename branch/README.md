@@ -9,6 +9,6 @@ if there is no index.html copy this.
     <title>My LitElement Project</title>
 </head>
 <body>
-  <script type="module" src="dist/my-web-components.es.js"></script>
+  <script type="module" src="dist/my-components.es.js"></script>
 </body>
 </html>
