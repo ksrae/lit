@@ -27,7 +27,6 @@ addImportsFromDirectory(path.join(srcDir, componentDir), componentDir);
 fs.writeFileSync(path.resolve(srcDir, 'main.ts'), allImports);
 console.log(`Files written to ${srcDir}/main.ts`);
 
-
 export default defineConfig({
   build: {
     lib: {
