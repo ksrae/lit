@@ -17,8 +17,6 @@ registerTranslateConfig({
 class TranslateElement extends LitElement {
   static styles = css`/* 스타일 정의 */`;
 
-	@state() count = 0;
-
 	async connectedCallback() {
 		super.connectedCallback();
 		await use('ko'); // 초기 언어 설정
