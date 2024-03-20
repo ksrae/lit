@@ -1,0 +1,4 @@
+node_modules
+src/main.ts
+dist
+package-lock.json
