@@ -1,5 +1,5 @@
 node_modules
 src/main.ts
 dist/*
-package-lock.json
-index.html
+/package-lock.json
+/index.html
