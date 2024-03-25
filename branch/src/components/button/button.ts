@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-@customElement('button-sample')
-class ButtonElement extends LitElement {
+@customElement('sy-button')
+export class ButtonElement extends LitElement {
   static styles = css`
     button {
       padding: 8px 16px;

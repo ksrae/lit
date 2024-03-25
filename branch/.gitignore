@@ -3,3 +3,4 @@ src/main.ts
 dist/
 package-lock.json
 index.html
+*storybook.log

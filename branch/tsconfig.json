@@ -12,9 +12,13 @@
     "rootDir": "./src",
     "allowJs": true,
     "isolatedModules": true,
-    "useDefineForClassFields": true,
+    "useDefineForClassFields": false,
+    "baseUrl": ".",
+		"paths": {
+			"*": ["*", "src/*"]
+		},
     "types": ["vite/client"]
   },
-  "include": ["src"],
+  "include": ["src", "src/components/button/cypress/button.cy.ts"],
   "exclude": ["node_modules"]
 }

@@ -2,16 +2,30 @@
   "name": "typescript-vite",
   "version": "1.0.0",
   "description": "",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "start": "vite build && vite",
     "dev": "vite",
-    "build": "vite build", 
-    "serve": "vite preview" 
+    "build": "vite build",
+    "serve": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "storybook:docs": "storybook dev --docs",
+    "cypress:open": "cypress open"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.2.25",
+    "@storybook/addon-essentials": "^8.0.4",
+    "@storybook/addon-links": "^8.0.4",
+    "@storybook/blocks": "^8.0.4",
+    "@storybook/test": "^8.0.4",
+    "@storybook/web-components": "^8.0.4",
+    "@storybook/web-components-vite": "^8.0.4",
+    "cypress": "^13.7.1",
+    "cypress-lit": "^0.0.8",
+    "storybook": "^8.0.4",
     "typescript": "^5.3.3",
     "vite": "^5.1.4"
   },
