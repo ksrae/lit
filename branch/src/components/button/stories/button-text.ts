@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import '../button';
+import '../button.element';
 
 export interface ButtonProps {
 
